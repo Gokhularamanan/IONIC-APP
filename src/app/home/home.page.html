@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Characters
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="filterItems()" cancel-button-color="warning" animated></ion-searchbar>
+    <ion-button *ngIf="!filter" (click)="changeFilter()" style="margin-left:8px;margin-right:8px" expand="block">More Filters</ion-button>
+    <ion-button *ngIf="filter"  (click)="changeFilter()" style="margin-left:8px;margin-right:8px" expand="block">Less Filters</ion-button>
+
+    <div *ngIf="filter" class="filters">
+        <ion-select (ionChange)="filterVillage()" [(ngModel)]="searchVillage" placeholder="Filter By Village" okText="Okay" cancelText="Dismiss">
+            <ion-select-option  value="Konoha(Leaf)">Konoha(Leaf)</ion-select-option>
+            <ion-select-option  value="Mount Myoboku">Mount Myoboku</ion-select-option>
+            <ion-select-option  value="Kumogakure(Cloud)">Kumogakure(Cloud)</ion-select-option>
+            <ion-select-option  value="Amegakure (Rain)">Amegakure (Rain)</ion-select-option>
+            <ion-select-option  value="Sunagakure(Sand)">Sunagakure(Sand)</ion-select-option>
+            <ion-select-option  value="Land of Ancestors">Land of Ancestors</ion-select-option>
+
+          </ion-select>
+   
+      <ion-select (ionChange)="filterClan()" [(ngModel)]="searchClan" placeholder="Filter By Clan" okText="Okay" cancelText="Dismiss">
+        <ion-select-option  value="Uzumaki">Uzumaki</ion-select-option>
+        <ion-select-option  value="Uchiha">Uchiha</ion-select-option>
+        <ion-select-option  value="Hyuga">Hyuga</ion-select-option>
+        <ion-select-option  value="Haruno">Haruno</ion-select-option>
+        <ion-select-option  value="Nara">Nara</ion-select-option>
+        <ion-select-option  value="Yamanaka">Yamanaka</ion-select-option>
+        <ion-select-option  value="Akimichi">Akimichi</ion-select-option>
+        <ion-select-option  value="Hatake">Hatake</ion-select-option>
+        <ion-select-option  value="Senju">Senju</ion-select-option>
+        <ion-select-option  value="Aburame">Aburame</ion-select-option>
+        <ion-select-option  value="Inuzuka">Inuzuka</ion-select-option>
+        <ion-select-option  value="Lee">Lee</ion-select-option>
+        <ion-select-option  value="Otsutsuki">Otsutsuki</ion-select-option>
+        <ion-select-option  value="Umino">Umino</ion-select-option>
+       
+      </ion-select>
+     
+    </div>
+  <ion-infinite-scroll>
+      
+ 
+
+    <div *ngFor="let val of arr;let i=index">
+    <ion-card class="card" [routerDirection]="'forward'" [routerLink]="'/details/'+val.name">
+      <ion-card-header class="card-head">
+        <ion-card-subtitle
+          ><img class="image" src="assets/Images/naruto.png"
+        /></ion-card-subtitle>
+        <ion-card-title class="card-name">{{val.name}}</ion-card-title>
+        
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            <ion-text color="dark">
+              <p>Clan:</p>
+            </ion-text>
+            {{val.clan}}
+            <br>
+            <ion-text color="dark">
+                <p>Village:</p>
+              </ion-text>
+              {{val.village}}
+          </ion-col>
+
+          <ion-col>
+              <ion-text color="dark">
+                <p>Rank:</p>
+              </ion-text>
+              <span *ngFor="let r of val.rank">
+                {{r}}
+              </span>
+              <br>
+              <ion-text color="dark">
+                  <p>Village:</p>
+                </ion-text>
+                Konaha
+            </ion-col>
+  
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    </div>
+  </ion-infinite-scroll>
+</ion-content>

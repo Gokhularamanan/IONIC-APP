@@ -1,0 +1,8 @@
+{
+  "name": "naruto",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "2a648069"
+}
